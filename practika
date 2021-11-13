@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication66
+namespace ConsoleApplication35
 {
     class Hotel
     {
-        public string NameHotel;
-        public int CountofStars;
-        public string Description;
-        public Country NameCountry;
-        public Hotel(string NameHotel, int CountofStars, string Description, Country NameCountry)
+        public string hotelname;
+        public int stars;
+        public string description;
+        public Country hotelcountry;
+        public Hotel(string hotelname, int stars, string description, Country hotelcountry)
         {
-            this.NameHotel = NameHotel;
-            this.CountofStars = CountofStars;
-            this.Description = Description;
-            this.NameCountry = NameCountry;
+            this.hotelname = hotelname;
+            this.stars = stars;
+            this.description = description;
+            this.hotelcountry = hotelcountry;
         }
         public Hotel()
         {
@@ -26,12 +26,12 @@ namespace ConsoleApplication66
     }
     class Country
     {
-        public string Name;
-        public string Capital;
-        public Country(string Name, string Capital)
+        public string country;
+        public string capital;
+        public Country(string country, string capital)
         {
-            this.Name = Name;
-            this.Capital = Capital;
+            this.country = country;
+            this.capital = capital;
         }
         public Country()
         {
@@ -43,25 +43,25 @@ namespace ConsoleApplication66
         static void AddCountry(List<Country> countryList)
         {
             Console.Write("Введите страну: ");
-            string Name = Console.ReadLine();
+            string country = Console.ReadLine();
             Console.Write("Введите столицу: ");
-            string Capital = Console.ReadLine();
-            countryList.Add(new Country(Name, Capital));
+            string capital = Console.ReadLine();
+            countryList.Add(new Country(country, capital));
         }
         static void AddHotel(List<Hotel> hotelList, List<Country> countryList)
         {
             Country selectedCountry = null;
             Console.Write("Введите название отеля: ");
-            string NameHotel = Console.ReadLine();
+            string hotelname = Console.ReadLine();
             Console.Write("Введите количество звёзд: ");
-            int CountofStars = Convert.ToInt32(Console.ReadLine());
+            int stars = Convert.ToInt32(Console.ReadLine());
             Console.Write("Введите описание: ");
-            string Description = Console.ReadLine();
+            string description = Console.ReadLine();
             Console.Write("Введите страну: ");
-            string NameCountry = Console.ReadLine();
+            string hotelcountry = Console.ReadLine();
             foreach (Country c in countryList)
             {
-                if (NameCountry == c.Name)
+                if (hotelcountry == c.country)
                 {
                     selectedCountry = c;
                     break;
@@ -71,30 +71,30 @@ namespace ConsoleApplication66
             {
                 return;
             }
-            hotelList.Add(new Hotel(Name, CountofStars, Description, selectedCountry));
+            hotelList.Add(new Hotel(hotelname, stars, description, selectedCountry));
         }
-        static void AllCountries(List<Country> countryList)
+        static void Countries(List<Country> countryList)
         {
-            foreach (Country b in countryList)
+            foreach (Country d in countryList)
             {
                 Console.Write("Страна: ");
-                Console.WriteLine(b.Name);
+                Console.WriteLine(d.country);
                 Console.Write("Столица: ");
-                Console.WriteLine(b.Capital);
+                Console.WriteLine(d.capital);
             }
         }
-        static void AllHotels(List<Hotel> hotelList, List<Country> countryList)
+        static void Hotels(List<Hotel> hotelList, List<Country> countryList)
         {
-            foreach (Hotel a in hotelList)
+            foreach (Hotel e in hotelList)
             {
                 Console.Write("Название отеля: ");
-                Console.WriteLine(a.NameHotel);
+                Console.WriteLine(e.hotelname);
                 Console.Write("Количество звёзд: ");
-                Console.WriteLine(a.CountofStars);
+                Console.WriteLine(e.stars);
                 Console.Write("Описание: ");
-                Console.WriteLine(a.Description);
+                Console.WriteLine(e.description);
                 Console.Write("Страна: ");
-                Console.WriteLine(a.NameCountry);
+                Console.WriteLine(e.hotelcountry);
             }
         }
         static void Main(string[] args)
@@ -102,15 +102,16 @@ namespace ConsoleApplication66
             List<Hotel> hotelList = new List<Hotel>();
             List<Country> countryList = new List<Country>();
             int x = 0;
-            while (x != 4)
+            while (x == 0)
             {
-                Console.WriteLine("1 Добавление страны");
-                Console.WriteLine("2 Добавление отеля");
-                Console.WriteLine("3 Вывод всех стран");
-                Console.WriteLine("4 Вывод всех отелей");
-                Console.Write("Выберите пункт меню: ");
-                int a = Convert.ToInt32(Console.ReadLine());
-                switch (a)
+                Console.WriteLine();
+                Console.WriteLine("1 Добавить страны");
+                Console.WriteLine("2 Добавить отеля");
+                Console.WriteLine("3 Вывод стран");
+                Console.WriteLine("4 Вывод отелей");
+                Console.WriteLine();
+                int num = Convert.ToInt32(Console.ReadLine());
+                switch (num)
                 {
                     case 1:
                         AddCountry(countryList);
@@ -119,10 +120,10 @@ namespace ConsoleApplication66
                         AddHotel(hotelList, countryList);
                         break;
                     case 3:
-                        AllCountries(countryList);
+                        Countries(countryList);
                         break;
                     case 4:
-                        AllHotels(hotelList, countryList);
+                        Hotels(hotelList, countryList);
                         break;
                     default:
                         break;
